@@ -5,9 +5,11 @@ authors = ["krepl <36075613+krepl@users.noreply.github.com>"]
 edition = "2018"
 
 [dependencies]
+bootloader = "0.3.12"
+
+[package.metadata.bootimage]
+default-target = "x86_64-blog_os.json"
 
 [profile.dev]
-panic = "abort" # disable stack unwinding on panic
 
 [profile.release]
-panic = "abort" # disable stack unwinding on panic
