@@ -1,0 +1,12 @@
+language: rust
+rust:
+  - nightly
+os:
+  - osx
+  - linux
+  - windows
+matrix:
+  fast_finish: true
+script:
+  - bootimage build --verbose
+  - bootimage test --verbose
