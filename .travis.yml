@@ -8,5 +8,6 @@ os:
 matrix:
   fast_finish: true
 script:
+  - cargo install bootimage --version "^0.5.0"
   - bootimage build --verbose
   - bootimage test --verbose
