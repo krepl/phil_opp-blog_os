@@ -1,5 +1,5 @@
 language: rust
-cache: cargo
+cache: cargo    # cache Cargo packages
 rust:
   - nightly
 os:
@@ -9,6 +9,7 @@ os:
 matrix:
   fast_finish: true
 script:
+  - rustup component add rust-src
   - cargo install cargo-xbuild
   - cargo install bootimage --version "^0.5.0"
   - bootimage build --verbose
