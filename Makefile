@@ -1,7 +1,11 @@
+QEMU_FLAGS += -serial mon:stdio
+QEMU_FLAGS += -device isa-debug-exit,iobase=0xf4,iosize=0x04
+QEMU_FLAGS += -display none
+
 ifneq ($(OS),Windows_NT)
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Darwin)
-        BOOTIMAGE_RUN_FLAGS += -L $(shell echo "$(shell dirname $(shell which qemu-system-x86_64))/../pc-bios")
+        QEMU_FLAGS += -L $(shell echo "$(shell dirname $(shell which qemu-system-x86_64))/../pc-bios")
     endif
 endif
 
@@ -14,8 +18,8 @@ lint:
 test:
 	cargo test && bootimage test --verbose
 
-emu:
-	bootimage run -- $(BOOTIMAGE_RUN_FLAGS)
+run:
+	bootimage run -- $(QEMU_FLAGS)
 
 clean:
 	cargo clean
