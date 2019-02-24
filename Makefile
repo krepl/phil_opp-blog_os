@@ -8,6 +8,12 @@ endif
 all:
 	bootimage build
 
+lint:
+	cargo clippy
+
+test:
+	cargo test && bootimage test --verbose
+
 emu:
 	bootimage run -- $(BOOTIMAGE_RUN_FLAGS)
 

@@ -1,20 +1,26 @@
+# TODO:
+# - See https://github.com/rust-osdev/bootimage/blob/master/.travis.yml for
+#   ideas on how to improve this Travis CI config
+#   - Namely, installing qemu-system-x86 (for each os) and running tests with
+#     qemu.
 language: rust
 
 rust:
   - nightly
 
 os:
-  - osx
   - linux
+  - osx
   - windows
 
 install:
   - rustup component add rust-src
-  - cargo xbuild --version || cargo install cargo-xbuild
-  - bootimage --version    || cargo install bootimage --version "^0.5.0"
+  - test -x $HOME/.cargo/bin/cargo-xbuild || cargo install cargo-xbuild
+  - test -x $HOME/.cargo/bin/bootimage || cargo install bootimage --version "^0.5.0"
   - bootimage build --verbose
 
 script:
-  - bootimage test --verbose
+  - cargo test                  # unit tests
+  - bootimage test --verbose    # integration tests
 
 cache: cargo    # cache Cargo packages
