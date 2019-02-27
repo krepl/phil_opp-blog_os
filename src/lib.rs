@@ -1,9 +1,11 @@
+#![feature(abi_x86_interrupt)]
 #![cfg_attr(not(test), no_std)]
 
 #[cfg(test)]
 #[macro_use]
 extern crate pretty_assertions;
 
+pub mod interrupts;
 pub mod serial;
 pub mod vga_buffer;
 

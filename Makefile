@@ -12,6 +12,9 @@ test:
 	cargo test && bootimage test --verbose
 
 run:
+	bootimage run
+
+run_cli:
 	bootimage run -- $(QEMU_FLAGS)
 
 clean:
